@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest HUB - Organic Fruits & Vegetables</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="top">
+        <i class="fa-solid fa-location-dot"></i>
+        <p class="street">123 Street, New York</p>
+        <i class="fa-solid fa-envelope"></i>
+        <p class="street">Email@gmail.com</p>
+    </div>
+
+    <div class="home">
+        <p class="fruits">Harvest HUB</p>
+        <div class="hm">
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/details">Shop Details</a>
+            <a href="/contact">Contacts</a>
+        </div>
+
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="/cart" style="color: inherit;"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="/dashboard" style="color: inherit;"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </div>
+
+    <img class="hero" src="{{ url_for('static', filename='images/hero-img.jpg') }}" alt="Hero Image">
+
+    <div class="fleximage">
+        <div>
+            <p class="organic">100% Organic Foods</p>
+            <p class="veggies">Organic Veggies & <br> Fruits Foods</p>
+
+            <div class="search-wrapper">
+                <form class="search-box" action="/shop">
+                    <input type="text" name="q" placeholder="Search">
+                    <button type="submit">Submit Now</button>
+                </form>
+            </div>
+        </div>
+        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/static/images/hero-img-1.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/static/images/hero-img-2.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="iconscard">
+        <div class="crd">
+            <i class="fa-solid fa-car-side"></i>
+            <p><span class="shipping">Free Shipping</span> <br>Free on order over $300</p>
+        </div>
+
+        <div class="crd">
+            <i class="fa-solid fa-user-shield"></i>
+            <p><span class="shipping">Security Payment</span> <br> &nbsp;&nbsp; 100% Security Payment</p>
+        </div>
+
+        <div class="crd">
+            <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
+            <p><span class="shipping">30 Days Return</span> <br>30 Day Money Guarantee</p>
+        </div>
+
+        <div class="crd">
+            <i class="fa-solid fa-phone"></i>
+            <p><span class="shipping">24/7 Support</span> <br>Support every time fast</p>
+        </div>
+    </div>
+
+
+    <div class="buttons">
+        <p class="products">Our Organic <br> Products</p>
+        <div class="all">
+            <button onclick="location.href='/shop'">All Products</button>
+            <button>Vegetables</button>
+            <button>Fruits</button>
+            <button>Breads</button>
+            <button>Meats</button>
+        </div>
+    </div>
+
+
+    <div class="cart">
+        <div class="cards">
+            <img src="/static/images/featur-2.jpg" alt="">
+            <h2>Strawberry</h2>
+            <p>Our farm-fresh, naturally sweet strawberries are handpicked at peak freshness and delivered straight to you. </p>
+            <h4>$2.29/Kg</h4>
+            <button onclick="addToCart('Strawberry', 2.29, 'featur-2.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-2.jpg" alt="">
+            <h2>Cherry</h2>
+            <p>Enjoy our farm-fresh, juicy, and naturally sweet cherries handpicked for exceptional quality and flavor. </p>
+            <h4>$5.75/Kg</h4>
+            <button onclick="addToCart('Cheery', 5.75, 'best-product-2.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-3.jpg" alt="">
+            <h2>Banana</h2>
+            <p>Enjoy our naturally sweet, soft, and energy-boosting bananas picked fresh and delivered with care. </p>
+            <h4>$3.28/Kg</h4>
+            <button onclick="addToCart('Big Banana', 3.28, 'vegetable-item-3.png')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-5.jpg" alt="">
+            <h2>Grapes</h2>
+            <p>Enjoy our crisp, juicy, and naturally sweet grapes carefully handpicked to ensure top quality and freshness. </p>
+            <h4>$3.99/Kg</h4>
+            <button onclick="addToCart('Grapes', 3.99, 'best-product-5.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+    </div>
+
+
+    <div class="cart">
+        <div class="cards">
+            <img src="/static/images/fruite-item-4.jpg" alt="">
+            <h2>Apricots</h2>
+            <p>Enjoy our naturally sweet, soft, and flavorful apricots handpicked at peak ripeness to ensure the best taste and freshness. </p>
+            <h4>$1.15/Kg</h4>
+            <button onclick="addToCart('Apricots', 1.15, 'best-product-4.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-6.jpg" alt="">
+            <h2>Apple</h2>
+            <p>Enjoy our crisp, juicy, and naturally sweet apples carefully handpicked to ensure top quality, freshness, and delicious flavor.</p>
+            <h4>$2.59/Kg</h4>
+            <button onclick="addToCart('Apple', 2.59, 'featur-1.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-1.jpg" alt="">
+            <h2>Orange</h2>
+            <p>Enjoy our juicy, naturally sweet oranges handpicked at peak ripeness for maximum flavor and freshness. </p>
+            <h4>$4.75/Kg</h4>
+            <button onclick="addToCart('Orange', 4.25, 'best-product-1.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-2.jpg" alt="">
+            <h2>Cherry</h2>
+            <p>Enjoy our juicy, sweet, and handpicked cherries carefully selected for top quality, vibrant color, and delicious flavor.</p>
+            <h4>$4.99/Kg</h4>
+            <button onclick="addToCart('Cheery', 5.75, 'best-product-2.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+    </div>
+
+
+
+    <div class="three">
+        <div class="fresh">
+            <img src="/static/images/featur-1.jpg" alt="">
+        </div>
+
+        <div class="apple">
+            <p><span class="fre">Fresh Apples</span><br><span class="off">20% OFF</span></p>
+        </div>
+
+        <div class="fresh1">
+            <img src="/static/images/featur-2.jpg" alt="">
+        </div>
+
+        <div class="apple1">
+            <p><span class="fre">Fresh Strawberry</span><br><span class="off">20% OFF</span></p>
+        </div>
+
+        <div class="fresh2">
+            <img src="/static/images/featur-3.jpg" alt="">
+        </div>
+
+        <div class="apple2">
+            <p><span class="fre">Fresh Brocoli</span><br><span class="off">20% OFF</span></p>
+        </div>
+    </div>
+
+
+
+    <div class="fre_orga">
+        <h1>Fresh Organic Vegetables</h1>
+    </div>
+
+    <div class="cart">
+        <div class="cards">
+            <img src="/static/images/vegetable-item-6.jpg" alt="">
+            <h2>Parsely</h2>
+            <p>Nutritionally, it is rich in vitamins A, C, and K, antioxidants, and minerals, making it a healthy vegetable addition. </p>
+            <h4>$4.99/Kg</h4>
+            <button onclick="addToCart('Fresh Parsely', 1.49, 'vegetable-item-6.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-1.jpg" alt="">
+            <h2>Tomato</h2>
+            <p>Enjoy our ripe, juicy, and naturally flavorful tomatoes handpicked at peak freshness to ensure top quality. </p>
+            <h4>$1.99/Kg</h4>
+            <button onclick="addToCart('Red Tomato', 1.99, 'vegetable-item-1.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-5.jpg" alt="">
+            <h2>Potatoes</h2>
+            <p>Enjoy our fresh, firm, and high-quality potatoes carefully selected for perfect texture and taste. </p>
+            <h4>$3.28/Kg</h4>
+            <button onclick="addToCart('Potatoes', 1.76, 'vegetable-item-5.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-4.jpg" alt="">
+            <h2>Bell Pepper</h2>
+            <p>Enjoy our crisp, colorful, and naturally sweet bell peppers handpicked at peak freshness for top quality and flavor. </p>
+            <h4>$6.05/Kg</h4>
+            <button onclick="addToCart('Bell Pepper', 6.05, 'vegetable-item-4.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+    </div>
+
+
+
+    <div class="exotic">
+        <div class="para">
+            <p class="fre_exo">Fresh Exotic <br> Fruits</p>
+            <p class="store">In our Store</p>
+            <p>Indulge in our handpicked selection of fresh exotic fruits from around the world. <br> Bursting  with unique flavors, vibrant colors, and rich nutrients, these fruits bring <br> a touch of luxury and freshness to your table.</p>
+            <button onclick="location.href='/cart'">BUY</button>
+        </div>
+        <div class="bucket">
+            <img src="/static/images/baner-1.png" alt="">
+        </div>
+    </div>
+
+
+    <div class="bestpro">
+        <p class="pro">Bestseller Products</p>
+    </div>
+    <div class="bestpro">
+        <p>Discover our top-selling products loved by customers! These items are selected <br> for their quality, freshness, and exceptional taste.</p>
+    </div>
+
+
+    <div class="flex">
+        <div class="stars">
+            <div><img src="/static/images/best-product-1.jpg" alt=""></div>
+            <div class="add">
+                <h4>Organic <br> Orange</h4>
+                <div class="star-rating">
+                    <i class="fa fa-star" data-index="1"></i>
+                    <i class="fa fa-star" data-index="2"></i>
+                    <i class="fa fa-star" data-index="3"></i>
+                    <i class="fa fa-star" data-index="4"></i>
+                    <i class="fa fa-star" data-index="5"></i>
+                </div>
+                <h3>4.25$</h3>
+                <button onclick="addToCart('Orange', 4.25, 'best-product-1.jpg')"><i class="fa-solid fa-bag-shopping"></i> Add to Carts</button>
+            </div>
+        </div>
+
+        <div class="stars">
+            <div><img src="/static/images/best-product-6.jpg" alt=""></div>
+            <div class="add">
+                <h4>Organic <br> Apple</h4>
+                <div class="star-rating">
+                    <i class="fa fa-star" data-index="1"></i>
+                    <i class="fa fa-star" data-index="2"></i>
+                    <i class="fa fa-star" data-index="3"></i>
+                    <i class="fa fa-star" data-index="4"></i>
+                    <i class="fa fa-star" data-index="5"></i>
+                </div>
+                <h3>2.59$</h3>
+                <button onclick="addToCart('Apple', 2.59, 'featur-1.jpg')"><i class="fa-solid fa-bag-shopping"></i> Add to Carts</button>
+            </div>
+        </div>
+
+        <div class="stars">
+            <div><img src="/static/images/best-product-5.jpg" alt=""></div>
+            <div class="add">
+                <h4>Organic <br> Grapes</h4>
+                <div class="star-rating">
+                    <i class="fa fa-star" data-index="1"></i>
+                    <i class="fa fa-star" data-index="2"></i>
+                    <i class="fa fa-star" data-index="3"></i>
+                    <i class="fa fa-star" data-index="4"></i>
+                    <i class="fa fa-star" data-index="5"></i>
+                </div>
+                <h3>3.99$</h3>
+                <button onclick="addToCart('Grapes', 3.99, 'best-product-5.jpg')"><i class="fa-solid fa-bag-shopping"></i> Add to Carts</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex">
+        <div class="stars">
+            <div><img src="/static/images/best-product-3.jpg" alt=""></div>
+            <div class="add">
+                <h4>Organic <br> Banana</h4>
+                <div class="star-rating">
+                    <i class="fa fa-star" data-index="1"></i>
+                    <i class="fa fa-star" data-index="2"></i>
+                    <i class="fa fa-star" data-index="3"></i>
+                    <i class="fa fa-star" data-index="4"></i>
+                    <i class="fa fa-star" data-index="5"></i>
+                </div>
+                <h3>3.28$</h3>
+                <button onclick="addToCart('Big Banana', 3.28, 'vegetable-item-3.png')"><i class="fa-solid fa-bag-shopping"></i> Add to Carts</button>
+            </div>
+        </div>
+
+        <div class="stars">
+            <div><img src="/static/images/best-product-4.jpg" alt=""></div>
+            <div class="add">
+                <h4>Organic <br> Apricot</h4>
+                <div class="star-rating">
+                    <i class="fa fa-star" data-index="1"></i>
+                    <i class="fa fa-star" data-index="2"></i>
+                    <i class="fa fa-star" data-index="3"></i>
+                    <i class="fa fa-star" data-index="4"></i>
+                    <i class="fa fa-star" data-index="5"></i>
+                </div>
+                <h3>1.15$</h3>
+                <button onclick="addToCart('Apricots', 1.15, 'best-product-4.jpg')"><i class="fa-solid fa-bag-shopping"></i> Add to Carts</button>
+            </div>
+        </div>
+
+        <div class="stars">
+            <div><img src="/static/images/best-product-2.jpg" alt=""></div>
+            <div class="add">
+                <h4>Organic <br> Cherry</h4>
+                <div class="star-rating">
+                    <i class="fa fa-star" data-index="1"></i>
+                    <i class="fa fa-star" data-index="2"></i>
+                    <i class="fa fa-star" data-index="3"></i>
+                    <i class="fa fa-star" data-index="4"></i>
+                    <i class="fa fa-star" data-index="5"></i>
+                </div>
+                <h3>5.75$</h3>
+                <button onclick="addToCart('Cheery', 5.75, 'best-product-2.jpg')"><i class="fa-solid fa-bag-shopping"></i> Add to Carts</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="satisfy">
+        <div class="inline">
+            <div class="customer">
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                    <h3>SATISFIED <br> CUSTOMERS</h3>
+                    <p>1963</p>
+                </div>
+            </div>
+            <div class="customer">
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                    <h3>QUALITY <br> OF <br> SERVICE</h3>
+                    <p>99%</p>
+                </div>
+            </div>
+            <div class="customer">
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                    <h3>QUALITY <br> CERTIFICATES</h3>
+                    <p>33</p>
+                </div>
+            </div>
+            <div class="customer">
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                    <h3>AVAILABLE <br> PRODUCTS</h3>
+                    <p>789</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testi">
+        <h2>Our Testimonials</h2>
+        <p>Our Client Saying !</p>
+    </div>
+
+
+    <div class="bothclient">
+        <div class="client">
+            <P>Harvest Hub us best for organic
+                fruits and vegetables.
+            </P>
+            <hr>
+            <div class="comma">
+                <div class="img_flex">
+                    <div class="img"><img src="/static/images/testimonial-1.jpg" alt=""></div>
+                    <div class="name">
+                        <h2>Angella</h2>
+                        <h6>Teacher</h6>
+                        <div class="star-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-quote-right quote"></i>
+            </div>
+        </div>
+
+        <div class="client">
+            <P>Best shipping time</P>
+            <hr>
+            <div class="comma">
+                <div class="img_flex">
+                    <div class="img"><img src="/static/images/testimonial-1.jpg" alt=""></div>
+                    <div class="name">
+                        <h2>Bela</h2>
+                        <h6>Designer</h6>
+                        <div class="star-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <i class="fa-solid fa-quote-right quote"></i>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-logo">
+                Harvest HUB
+                <span>Fresh products</span>
+            </div>
+            <form class="footer-form" onsubmit="event.preventDefault(); alert('Subscribed!')">
+                <input type="email" placeholder="Your Email" required />
+                <button type="submit">Subscribe Now</button>
+            </form>
+            <div class="social-icons">
+                <a href="#">t</a>
+                <a href="#">f</a>
+                <a href="#">▶</a>
+                <a href="#">in</a>
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="footer-column" style="flex: 1">
+                <h3>Why People Like us!</h3>
+                <p>
+                    Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.
+                </p>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Shop Info</h3>
+                <a href="/about">About Us</a><br />
+                <a href="/contact">Contact Us</a><br />
+                <a href="/about">Privacy Policy</a><br />
+                <a href="/about">Terms & Condition</a><br />
+                <a href="/about">Return Policy</a><br />
+                <a href="/about">FAQs & Help</a>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Account</h3>
+                <a href="/coming-soon">My Account</a><br />
+                <a href="/details">Shop details</a><br />
+                <a href="/cart">Shopping Cart</a><br />
+                <a href="/coming-soon">Wishlist</a><br />
+                <a href="/coming-soon">Order History</a><br />
+                <a href="/coming-soon">International Orders</a>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Contact</h3>
+                <p>Address: 1429 Netus Rd, NY 48247</p>
+                <p>Email: Example@gmail.com</p>
+                <p>Phone: +0123 4567 8910</p>
+                <p>Payment Accepted</p>
+                <div class="payment-icons">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" />
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" />
+                    <img src="https://img.icons8.com/color/48/maestro.png" alt="Maestro" />
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="Paypal" />
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span class="highlight">Harvest HUB</span>, All right reserved.</span><br>
+        </div>
+    </footer>
+
+    <script>
+        // Star Rating Visual Logic
+        document.querySelectorAll('.star-rating').forEach(ratingBlock => {
+            const stars = ratingBlock.querySelectorAll('.fa-star');
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    stars.forEach(s => s.classList.remove('active'));
+                    for (let i = 0; i <= index; i++) {
+                        stars[i].classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Add to Cart Function
+        function addToCart(name, price, image) {
+            let selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
+            
+            // Check if item already exists
+            let existingItem = selectedItems.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                selectedItems.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    qty: 1
+                });
+            }
+
+            localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
+            alert(name + " added to cart! 🛒");
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

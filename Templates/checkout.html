@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Harvest HUB</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/checkout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+
+    <style>
+        /* Header Fixes for Checkout Page */
+        .home { margin-bottom: 20px; }
+        
+        /* Overriding Blue Colors with Harvest Hub Green */
+        .btn-primary {
+            background-color: #81c408 !important;
+            border-color: #81c408 !important;
+        }
+        .btn-primary:hover {
+            background-color: #6a9e08 !important;
+        }
+        .form-control:focus {
+            border-color: #81c408 !important;
+            box-shadow: 0 0 5px rgba(129, 196, 8, 0.5) !important;
+        }
+        h2, h5 {
+            background: linear-gradient(to right, #f0ffe0, #ffffff) !important;
+            border-left: 5px solid #81c408;
+        }
+        .credit-form {
+            border-left: 5px solid #81c408 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top">
+        <i class="fa-solid fa-location-dot"></i>
+        <p class="street">123 Street, New York</p>
+        <i class="fa-solid fa-envelope"></i>
+        <p class="street">Email@gmail.com</p>
+    </div>
+
+    <div class="home">
+        <p class="fruits">Harvest HUB</p>
+        <div class="hm">
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/details">Shop Details</a>
+            <a href="/contact">Contacts</a>
+        </div>
+        <div class="search">
+            <a href="/shop"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="/cart"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="/login"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Billing Information</h2>
+            <form id="checkout-form" action="/place-order" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Our Contact Number</label>
+                    <input type="text" class="form-control" value="03124800449" readonly style="background-color: #e9ecef;" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Your Contact Number</label>
+                    <input type="text" name="phone" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    <textarea name="address" class="form-control" rows="2" required></textarea>
+                </div>
+
+                <h5>Payment Method</h5>
+                <div class="payment-options mb-3">
+                    <input type="radio" name="payment" id="cod" value="cod" checked />
+                    <label for="cod">Cash on Delivery</label>
+
+                    <input type="radio" name="payment" id="easypaisa" value="easypaisa" />
+                    <label for="easypaisa">Easypaisa</label>
+
+                    <input type="radio" name="payment" id="jazzcash" value="jazzcash" />
+                    <label for="jazzcash">JazzCash</label>
+
+                    <input type="radio" name="payment" id="bank" value="bank" />
+                    <label for="bank">Bank Transfer</label>
+                </div>
+
+                <div class="credit-form" id="easypaisa-form">
+                    <div class="mb-3">
+                        <label class="form-label">Easypaisa Account Number</label>
+                        <input type="text" class="form-control" id="easypaisaNumber" placeholder="03XXXXXXXXX" />
+                        <p class="small text-muted">Send amount to: 0312-4800449</p>
+                    </div>
+                </div>
+
+                <div class="credit-form" id="jazzcash-form">
+                    <div class="mb-3">
+                        <label class="form-label">JazzCash Account Number</label>
+                        <input type="text" class="form-control" id="jazzcashNumber" placeholder="03XXXXXXXXX" />
+                        <p class="small text-muted">Send amount to: 0300-1234567</p>
+                    </div>
+                </div>
+
+                <div class="credit-form" id="bank-form">
+                    <div class="mb-3">
+                        <label class="form-label">Sender Account Number</label>
+                        <input type="text" class="form-control" id="bankNumber" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Sender CNIC (Optional)</label>
+                        <input type="text" class="form-control" id="bankCnic" />
+                    </div>
+                    <p class="small text-muted">Bank: HBL | Title: Harvest Hub | Acc: 1234-5678</p>
+                </div>
+
+                <input type="hidden" name="cart_data" id="cart_data">
+
+                <div class="mb-3 mt-4">
+                    <p style="font-size: 1.2rem;"><strong>Total Payable:</strong> $<span id="payable">0.00</span></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+
+        <div class="summary-container">
+            <h2>🛒 Order Summary</h2>
+            <table class="checkout-table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Qty</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="checkout-body"></tbody>
+            </table>
+            
+            <div style="margin-top: 20px; border-top: 2px solid #eee; padding-top: 10px;">
+                <div class="d-flex justify-content-between">
+                    <span>Subtotal:</span>
+                    <span>$<span id="checkout-subtotal">0.00</span></span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span>Tax (10%):</span>
+                    <span>$<span id="checkout-tax">0.00</span></span>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <span class="grand-total">Total:</span>
+                    <span class="grand-total">$<span id="checkout-total">0.00</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer mt-5">
+        <div class="footer-bottom text-center py-3">
+            <span>© <span class="highlight" style="color:#81c408;">Harvest HUB</span>, All right reserved.</span>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Load Data
+        const selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
+        const tbody = document.getElementById("checkout-body");
+
+        // Redirect if cart empty
+        if (selectedItems.length === 0) {
+            tbody.innerHTML = "<tr><td colspan='4'>Cart is empty! <a href='/shop'>Go Shopping</a></td></tr>";
+        }
+
+        let subtotal = 0;
+
+        // 2. Populate Table
+        selectedItems.forEach(item => {
+            const tr = document.createElement("tr");
+            const total = item.qty * item.price;
+            subtotal += total;
+            
+            // Image Path Fix
+            tr.innerHTML = `
+                <td><img src="/static/images/${item.image}" alt="${item.name}" width="50" style="border-radius:5px;"></td>
+                <td>${item.name}</td>
+                <td>${item.qty}</td>
+                <td>$${total.toFixed(2)}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // 3. Calculate Totals
+        const tax = subtotal * 0.10;
+        const grandTotal = subtotal + tax;
+
+        document.getElementById("checkout-subtotal").textContent = subtotal.toFixed(2);
+        document.getElementById("checkout-tax").textContent = tax.toFixed(2);
+        document.getElementById("checkout-total").textContent = grandTotal.toFixed(2);
+        document.getElementById("payable").textContent = grandTotal.toFixed(2);
+
+        // 4. Payment Toggle Logic
+        const formSections = {
+            easypaisa: document.getElementById("easypaisa-form"),
+            jazzcash: document.getElementById("jazzcash-form"),
+            bank: document.getElementById("bank-form")
+        };
+
+        function hideAllPaymentForms() {
+            Object.values(formSections).forEach(section => section.style.display = "none");
+        }
+
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                hideAllPaymentForms();
+                if (formSections[radio.value]) {
+                    formSections[radio.value].style.display = 'block';
+                }
+            });
+        });
+
+        // Hide initially
+        hideAllPaymentForms();
+
+        // 5. Submit Handler
+        document.getElementById("checkout-form").addEventListener("submit", function (e) {
+            if (selectedItems.length === 0) {
+                e.preventDefault();
+                alert("Your cart is empty!");
+                return;
+            }
+            // Add cart data to hidden input so Flask receives it
+            document.getElementById("cart_data").value = JSON.stringify(selectedItems);
+            
+            // Clear cart after submitting (Optional: or clear it on the success page)
+            // localStorage.removeItem("selectedItems");
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

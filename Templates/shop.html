@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Harvest HUB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <style>
+        /* Product Grid Styling */
+        .cart { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 25px; 
+            padding-bottom: 50px; 
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        .cards {
+            /* Card Design Fixed */
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 15px;
+            transition: 0.3s;
+            background: #fff;
+            width: 300px; /* Fixed width for uniformity */
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cards:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        /* IMAGE FIX IS HERE */
+        .cards img {
+            width: 100%;       /* Width container ke barabar */
+            height: 200px;     /* Height fix kardi taake upar neechay na ho */
+            object-fit: contain; /* Image stretch nahi hogi, fit ho jayegi */
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .cards h2 { font-size: 1.5rem; color: #333; margin-bottom: 5px; }
+        .cards h4 { font-size: 1.2rem; color: #81c408; font-weight: bold; margin-bottom: 15px; }
+        
+        .cards button {
+            background-color: white;
+            color: #81c408;
+            border: 2px solid #81c408;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        
+        .cards button:hover {
+            background-color: #81c408;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top">
+        <i class="fa-solid fa-location-dot"></i> <p class="street">123 Street, New York</p>
+        <i class="fa-solid fa-envelope"></i> <p class="street">Email@gmail.com</p>
+    </div>
+
+    <div class="home">
+        <p class="fruits">Harvest HUB</p>
+        <div class="hm">
+            <a href="/">Home</a>
+            <a href="/shop" style="color: orange;">Shop</a>
+            <a href="/details">Shop Details</a>
+            <a href="/contact">Contacts</a>
+        </div>
+        <div class="search">
+            <a href="/shop"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="/cart" style="color: inherit;"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="/login"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/images/cart-page-header-img.jpg'); background-size: cover;">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white">Our Shop</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mb-5">
+        <h2 style="color: #81c408; font-weight: bold;">All Fresh Products</h2>
+        <p>Choose from our wide range of organic fruits & vegetables</p>
+    </div>
+
+    <div class="cart">
+        <div class="cards">
+            <img src="/static/images/featur-1.jpg" alt="Apple">
+            <h2>Apple</h2>
+            <h4>$2.59/Kg</h4>
+            <button onclick="addToCart('Apple', 2.59, 'featur-1.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/featur-2.jpg" alt="Strawberry">
+            <h2>Strawberry</h2>
+            <h4>$2.29/Kg</h4>
+            <button onclick="addToCart('Strawberry', 2.29, 'featur-2.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-2.jpg" alt="Cherry">
+            <h2>Cherry</h2>
+            <h4>$5.75/Kg</h4>
+            <button onclick="addToCart('Cheery', 5.75, 'best-product-2.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-3.jpg" alt="Banana">
+            <h2>Banana</h2>
+            <h4>$3.28/Kg</h4>
+            <button onclick="addToCart('Big Banana', 3.28, 'vegetable-item-3.png')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-5.jpg" alt="Grapes">
+            <h2>Grapes</h2>
+            <h4>$3.99/Kg</h4>
+            <button onclick="addToCart('Grapes', 3.99, 'best-product-5.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-4.jpg" alt="Apricots">
+            <h2>Apricots</h2>
+            <h4>$1.15/Kg</h4>
+            <button onclick="addToCart('Apricots', 1.15, 'best-product-4.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/fruite-item-1.jpg" alt="Orange">
+            <h2>Orange</h2>
+            <h4>$4.75/Kg</h4>
+            <button onclick="addToCart('Orange', 4.25, 'best-product-1.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-5.jpg" alt="Potatoes">
+            <h2>Potatoes</h2>
+            <h4>$1.76/Kg</h4>
+            <button onclick="addToCart('Potatoes', 1.76, 'vegetable-item-5.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-2.jpg" alt="Brocoli">
+            <h2>Brocoli</h2>
+            <h4>$2.67/Kg</h4>
+            <button onclick="addToCart('Brocoli', 2.67, 'vegetable-item-2.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-6.jpg" alt="Parsley">
+            <h2>Parsley</h2>
+            <h4>$4.99/Kg</h4>
+            <button onclick="addToCart('Fresh Parsely', 1.49, 'vegetable-item-6.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-1.jpg" alt="Tomato">
+            <h2>Tomato</h2>
+            <h4>$1.99/Kg</h4>
+            <button onclick="addToCart('Red Tomato', 1.99, 'vegetable-item-1.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+
+        <div class="cards">
+            <img src="/static/images/vegetable-item-4.jpg" alt="Bell Pepper">
+            <h2>Bell Pepper</h2>
+            <h4>$6.05/Kg</h4>
+            <button onclick="addToCart('Bell Pepper', 6.05, 'vegetable-item-4.jpg')"> <i class="fa-solid fa-bag-shopping"></i> Add to cart</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-logo">
+                Harvest HUB
+                <span>Fresh products</span>
+            </div>
+            <form class="footer-form" onsubmit="event.preventDefault(); alert('Subscribed!')">
+                <input type="email" placeholder="Your Email" required />
+                <button type="submit">Subscribe Now</button>
+            </form>
+            <div class="social-icons">
+                <a href="#">t</a>
+                <a href="#">f</a>
+                <a href="#">▶</a>
+                <a href="#">in</a>
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="footer-column" style="flex: 1">
+                <h3>Why People Like us!</h3>
+                <p>
+                    Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.
+                </p>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Shop Info</h3>
+                <a href="/about">About Us</a><br />
+                <a href="/contact">Contact Us</a><br />
+                <a href="/about">Privacy Policy</a><br />
+                <a href="/about">Terms & Condition</a><br />
+                <a href="/about">Return Policy</a><br />
+                <a href="/about">FAQs & Help</a>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Account</h3>
+                <a href="/coming-soon">My Account</a><br />
+                <a href="/details">Shop details</a><br />
+                <a href="/cart">Shopping Cart</a><br />
+                <a href="/coming-soon">Wishlist</a><br />
+                <a href="/coming-soon">Order History</a><br />
+                <a href="/coming-soon">International Orders</a>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Contact</h3>
+                <p>Address: 1429 Netus Rd, NY 48247</p>
+                <p>Email: Example@gmail.com</p>
+                <p>Phone: +0123 4567 8910</p>
+                <p>Payment Accepted</p>
+                <div class="payment-icons">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" />
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" />
+                    <img src="https://img.icons8.com/color/48/maestro.png" alt="Maestro" />
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="Paypal" />
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span class="highlight">Harvest HUB</span>, All right reserved.</span><br>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart(name, price, image) {
+            let selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
+            let existingItem = selectedItems.find(item => item.name === name);
+            if (existingItem) { existingItem.qty += 1; } 
+            else { selectedItems.push({ name: name, price: price, image: image, qty: 1 }); }
+            localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
+            alert(name + " added to cart! 🛒");
+        }
+    </script>
+</body>
+</html>
