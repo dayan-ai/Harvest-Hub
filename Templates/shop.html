@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Harvest HUB</title>
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    
     <style>
-        /* Product Grid Styling */
+        /* =========================================
+           PAGE SPECIFIC STYLES
+        ========================================== */
+        
+        /* Product Grid Container Styling */
         .cart { 
             display: flex; 
             flex-wrap: wrap; 
@@ -19,14 +26,14 @@
             padding-right: 20px;
         }
         
+        /* Product Card Design */
         .cards {
-            /* Card Design Fixed */
             border: 1px solid #e0e0e0;
             padding: 20px;
             border-radius: 15px;
             transition: 0.3s;
             background: #fff;
-            width: 300px; /* Fixed width for uniformity */
+            width: 300px; /* Uniform width for all cards */
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             display: flex;
@@ -35,23 +42,26 @@
             justify-content: space-between;
         }
 
+        /* Card Hover Effect */
         .cards:hover {
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             transform: translateY(-5px);
         }
 
-        /* IMAGE FIX IS HERE */
+        /* Product Image Styling - Ensures consistent aspect ratio */
         .cards img {
-            width: 100%;       /* Width container ke barabar */
-            height: 200px;     /* Height fix kardi taake upar neechay na ho */
-            object-fit: contain; /* Image stretch nahi hogi, fit ho jayegi */
+            width: 100%;       
+            height: 200px;     
+            object-fit: contain; /* Prevents image stretching */
             margin-bottom: 15px;
             border-radius: 10px;
         }
 
+        /* Typography Styling */
         .cards h2 { font-size: 1.5rem; color: #333; margin-bottom: 5px; }
         .cards h4 { font-size: 1.2rem; color: #81c408; font-weight: bold; margin-bottom: 15px; }
         
+        /* 'Add to Cart' Button Styling */
         .cards button {
             background-color: white;
             color: #81c408;
@@ -60,6 +70,7 @@
             border-radius: 30px;
             font-weight: 600;
             transition: 0.3s;
+            cursor: pointer;
         }
         
         .cards button:hover {
@@ -68,11 +79,14 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="top">
-        <i class="fa-solid fa-location-dot"></i> <p class="street">123 Street, New York</p>
-        <i class="fa-solid fa-envelope"></i> <p class="street">Email@gmail.com</p>
+        <i class="fa-solid fa-location-dot"></i>
+        <p class="street">123 Street, New York</p>
+        <i class="fa-solid fa-envelope"></i>
+        <p class="street">Email@gmail.com</p>
     </div>
 
     <div class="home">
@@ -83,13 +97,13 @@
             <a href="/details">Shop Details</a>
             <a href="/contact">Contacts</a>
         </div>
+
         <div class="search">
-            <a href="/shop"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <i class="fa-solid fa-magnifying-glass"></i>
             <a href="/cart" style="color: inherit;"><i class="fa-solid fa-bag-shopping"></i></a>
-            <a href="/login"><i class="fa-solid fa-user"></i></a>
+            <a href="/dashboard" style="color: inherit;"><i class="fa-solid fa-user"></i></a>
         </div>
     </div>
-
     <div class="container-fluid bg-primary py-5 mb-5 hero-header" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/static/images/cart-page-header-img.jpg'); background-size: cover;">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -191,6 +205,7 @@
         </div>
     </div>
 
+
     <footer class="footer">
         <div class="footer-top">
             <div class="footer-logo">
@@ -212,9 +227,7 @@
         <div class="footer-columns">
             <div class="footer-column" style="flex: 1">
                 <h3>Why People Like us!</h3>
-                <p>
-                    Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.
-                </p>
+                <p>Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.</p>
             </div>
 
             <div class="footer-column" style="flex: 1">
@@ -256,13 +269,28 @@
             <span>© <span class="highlight">Harvest HUB</span>, All right reserved.</span><br>
         </div>
     </footer>
-
     <script>
         function addToCart(name, price, image) {
+            // Retrieve cart items from local storage or initialize empty array
             let selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
+            
+            // Check if item is already in cart
             let existingItem = selectedItems.find(item => item.name === name);
-            if (existingItem) { existingItem.qty += 1; } 
-            else { selectedItems.push({ name: name, price: price, image: image, qty: 1 }); }
+            
+            if (existingItem) {
+                // If exists, increment quantity
+                existingItem.qty += 1;
+            } else {
+                // If new, add to array
+                selectedItems.push({
+                    name: name,
+                    price: price,
+                    image: image,
+                    qty: 1
+                });
+            }
+
+            // Save updated cart back to local storage
             localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
             alert(name + " added to cart! 🛒");
         }

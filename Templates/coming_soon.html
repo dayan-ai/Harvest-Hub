@@ -1,17 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Coming Soon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Harvest HUB</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    
     <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa; flex-direction: column; }
-        h1 { color: #81c408; font-size: 50px; }
+        /* =========================================
+           PAGE SPECIFIC STYLES
+        ========================================== */
+        /* Center content vertically and horizontally */
+        .coming-soon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 60vh; /* Ensures content takes up significant screen space */
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+
+        .coming-soon-container h1 {
+            color: #81c408;
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-container p {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        .coming-soon-container i {
+            font-size: 4rem;
+            color: #81c408;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
+
 <body>
-    <h1>Coming Soon! 🚀</h1>
-    <p>This feature (My Account / Wishlist) is currently under development.</p>
-    <a href="/" class="btn btn-success">Go Back Home</a>
+
+    <div class="top">
+        <i class="fa-solid fa-location-dot"></i>
+        <p class="street">123 Street, New York</p>
+        <i class="fa-solid fa-envelope"></i>
+        <p class="street">Email@gmail.com</p>
+    </div>
+
+    <div class="home">
+        <p class="fruits">Harvest HUB</p>
+        <div class="hm">
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/details">Shop Details</a>
+            <a href="/contact">Contacts</a>
+        </div>
+
+        <div class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="/cart" style="color: inherit;"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="/dashboard" style="color: inherit;"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </div>
+    <div class="container-fluid coming-soon-container">
+        <i class="fa-solid fa-rocket"></i>
+        <h1>Coming Soon! 🚀</h1>
+        <p>
+            We are working hard to bring this feature to you.<br>
+            Please check back later!
+        </p>
+        <a href="/" class="btn btn-success btn-lg" style="background-color: #81c408; border: none;">Go Back Home</a>
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-logo">
+                Harvest HUB
+                <span>Fresh products</span>
+            </div>
+            <form class="footer-form" onsubmit="event.preventDefault(); alert('Subscribed!')">
+                <input type="email" placeholder="Your Email" required />
+                <button type="submit">Subscribe Now</button>
+            </form>
+            <div class="social-icons">
+                <a href="#">t</a>
+                <a href="#">f</a>
+                <a href="#">▶</a>
+                <a href="#">in</a>
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="footer-column" style="flex: 1">
+                <h3>Why People Like us!</h3>
+                <p>Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.</p>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Shop Info</h3>
+                <a href="/about">About Us</a><br />
+                <a href="/contact">Contact Us</a><br />
+                <a href="/about">Privacy Policy</a><br />
+                <a href="/about">Terms & Condition</a><br />
+                <a href="/about">Return Policy</a><br />
+                <a href="/about">FAQs & Help</a>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Account</h3>
+                <a href="/coming-soon">My Account</a><br />
+                <a href="/details">Shop details</a><br />
+                <a href="/cart">Shopping Cart</a><br />
+                <a href="/coming-soon">Wishlist</a><br />
+                <a href="/coming-soon">Order History</a><br />
+                <a href="/coming-soon">International Orders</a>
+            </div>
+
+            <div class="footer-column" style="flex: 1">
+                <h3>Contact</h3>
+                <p>Address: 1429 Netus Rd, NY 48247</p>
+                <p>Email: Example@gmail.com</p>
+                <p>Phone: +0123 4567 8910</p>
+                <p>Payment Accepted</p>
+                <div class="payment-icons">
+                    <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" />
+                    <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" />
+                    <img src="https://img.icons8.com/color/48/maestro.png" alt="Maestro" />
+                    <img src="https://img.icons8.com/color/48/paypal.png" alt="Paypal" />
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span class="highlight">Harvest HUB</span>, All right reserved.</span><br>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

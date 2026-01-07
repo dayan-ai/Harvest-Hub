@@ -21,6 +21,7 @@
         <p class="street">123 Street, New York</p>
         <i class="fa-solid fa-envelope"></i>
         <p class="street">Email@gmail.com</p>
+        <p class="privacy">Privacy Policy / Terms and Use / Sales and Refunds</p>
     </div>
 
     <div class="home">
@@ -253,6 +254,140 @@
             let existingItem = selectedItems.find(item => item.name === name);
             if (existingItem) { existingItem.qty += qty; } 
             else { selectedItems.push({ name: name, price: price, image: image, qty: qty }); }
+            localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
+            alert(name + " added to cart! 🛒");
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harvest HUB - Organic Fruits & Vegetables</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    
+    <style>
+        /* === CRITICAL FIX FOR GAPS === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { width: 100%; overflow-x: hidden; }
+        
+        /* Ensure images and sections fit */
+        .hero { width: 100%; display: block; object-fit: cover; }
+        
+        /* Fix container widths */
+        .home, .top, .fleximage, .iconscard, .cart, .three, .fre_orga {
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top" style="display: flex; justify-content: space-between; padding: 10px 50px; background: #81c408; color: white;">
+        <div><i class="fa-solid fa-location-dot"></i> 123 Street, New York</div>
+        <div><i class="fa-solid fa-envelope"></i> Email@gmail.com</div>
+    </div>
+
+    <div class="home" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <p class="fruits" style="color: #81c408; font-size: 24px; font-weight: bold; margin: 0;">Harvest HUB</p>
+        <div class="hm">
+            <a href="/" style="margin: 0 15px; text-decoration: none; color: #333;">Home</a>
+            <a href="/shop" style="margin: 0 15px; text-decoration: none; color: #333;">Shop</a>
+            <a href="/details" style="margin: 0 15px; text-decoration: none; color: #333;">Details</a>
+            <a href="/contact" style="margin: 0 15px; text-decoration: none; color: #333;">Contact</a>
+        </div>
+        <div class="search">
+            <a href="/cart" style="color: #333; margin-right: 15px;"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="/login" style="color: #333;"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </div>
+
+    <img class="hero" src="{{ url_for('static', filename='images/hero-img.jpg') }}" alt="Hero Image">
+
+    <div class="fleximage" style="display: flex; align-items: center; justify-content: center; padding: 50px; background: #f8f9fa;">
+        <div style="flex: 1; padding-right: 20px;">
+            <p style="color: orange; font-weight: bold;">100% Organic Foods</p>
+            <h1 style="font-size: 3rem; color: #81c408; font-weight: 800;">Organic Veggies & <br> Fruits Foods</h1>
+            <form action="/shop" style="margin-top: 20px; display: flex;">
+                <input type="text" name="q" placeholder="Search products..." style="padding: 10px; border: 1px solid #ccc; border-radius: 30px 0 0 30px; width: 300px; outline: none;">
+                <button type="submit" style="padding: 10px 20px; background: #81c408; color: white; border: none; border-radius: 0 30px 30px 0; font-weight: bold;">Search</button>
+            </form>
+        </div>
+        <div style="flex: 1;">
+            <img src="/static/images/hero-img-1.png" style="width: 100%; border-radius: 20px;">
+        </div>
+    </div>
+
+    <div class="iconscard" style="display: flex; justify-content: center; gap: 20px; padding: 50px 20px; flex-wrap: wrap;">
+        <div class="crd" style="text-align: center; background: #f4f6f8; padding: 30px; border-radius: 10px; width: 250px;">
+            <i class="fa-solid fa-car-side" style="font-size: 40px; color: orange; margin-bottom: 10px;"></i>
+            <p style="font-weight: bold;">Free Shipping <br><span style="font-weight: normal; font-size: 14px;">Orders over $300</span></p>
+        </div>
+        <div class="crd" style="text-align: center; background: #f4f6f8; padding: 30px; border-radius: 10px; width: 250px;">
+            <i class="fa-solid fa-shield-halved" style="font-size: 40px; color: orange; margin-bottom: 10px;"></i>
+            <p style="font-weight: bold;">Secure Payment <br><span style="font-weight: normal; font-size: 14px;">100% Secure</span></p>
+        </div>
+        <div class="crd" style="text-align: center; background: #f4f6f8; padding: 30px; border-radius: 10px; width: 250px;">
+            <i class="fa-solid fa-rotate" style="font-size: 40px; color: orange; margin-bottom: 10px;"></i>
+            <p style="font-weight: bold;">30 Days Return <br><span style="font-weight: normal; font-size: 14px;">Money Back Guarantee</span></p>
+        </div>
+    </div>
+
+    <div class="container text-center mb-5">
+        <h2 style="color: #81c408; font-weight: bold; font-size: 3rem;">Our Organic Products</h2>
+    </div>
+
+    <div class="cart" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding-bottom: 50px;">
+        <div class="cards" style="border: 1px solid #eee; padding: 15px; border-radius: 15px; width: 280px; text-align: center;">
+            <img src="/static/images/featur-2.jpg" style="width: 100%; height: 200px; object-fit: contain;">
+            <h3>Strawberry</h3>
+            <h4 style="color: #81c408;">$2.29/Kg</h4>
+            <button onclick="addToCart('Strawberry', 2.29, 'featur-2.jpg')" class="btn btn-outline-success" style="border-radius: 20px;">Add to Cart</button>
+        </div>
+        <div class="cards" style="border: 1px solid #eee; padding: 15px; border-radius: 15px; width: 280px; text-align: center;">
+            <img src="/static/images/fruite-item-2.jpg" style="width: 100%; height: 200px; object-fit: contain;">
+            <h3>Cherry</h3>
+            <h4 style="color: #81c408;">$5.75/Kg</h4>
+            <button onclick="addToCart('Cherry', 5.75, 'fruite-item-2.jpg')" class="btn btn-outline-success" style="border-radius: 20px;">Add to Cart</button>
+        </div>
+        <div class="cards" style="border: 1px solid #eee; padding: 15px; border-radius: 15px; width: 280px; text-align: center;">
+            <img src="/static/images/fruite-item-5.jpg" style="width: 100%; height: 200px; object-fit: contain;">
+            <h3>Grapes</h3>
+            <h4 style="color: #81c408;">$3.99/Kg</h4>
+            <button onclick="addToCart('Grapes', 3.99, 'fruite-item-5.jpg')" class="btn btn-outline-success" style="border-radius: 20px;">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer class="footer" style="background: #343a40; color: white; padding: 40px 50px; margin-top: 50px;">
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3 style="color: #81c408;">Harvest HUB</h3>
+                <p>Fresh products directly from farm to your table.</p>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <h4>Quick Links</h4>
+                <a href="/" style="color: #ccc; display: block; margin-bottom: 5px;">Home</a>
+                <a href="/shop" style="color: #ccc; display: block; margin-bottom: 5px;">Shop</a>
+                <a href="/contact" style="color: #ccc; display: block;">Contact</a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 30px; border-top: 1px solid #555; padding-top: 20px;">
+            <p>&copy; Harvest HUB, All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function addToCart(name, price, image) {
+            let selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
+            let existingItem = selectedItems.find(item => item.name === name);
+            if (existingItem) existingItem.qty += 1;
+            else selectedItems.push({ name: name, price: price, image: image, qty: 1 });
             localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
             alert(name + " added to cart! 🛒");
         }

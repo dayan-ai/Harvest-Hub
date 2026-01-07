@@ -5,28 +5,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Harvest HUB</title>
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='css/first.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    
     <style>
+        /* =========================================
+           CONTACT PAGE SPECIFIC STYLES
+        ========================================== */
+        
+        /* Contact Form Container */
         .contact-container {
             padding: 50px;
             max-width: 800px;
-            margin: auto;
+            margin: 50px auto;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            margin-top: 30px;
-            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-top: 5px solid #81c408; /* Theme Accent */
         }
+
+        /* Contact Info Section */
         .contact-info {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             text-align: center;
+        }
+        
+        .contact-info i {
+            color: #81c408;
+            margin-right: 10px;
+        }
+        
+        .contact-info p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Form Controls */
+        .form-control:focus {
+            border-color: #81c408;
+            box-shadow: 0 0 0 0.2rem rgba(129, 196, 8, 0.25);
+        }
+
+        /* Send Message Button */
+        .btn-send {
+            background-color: #81c408;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-send:hover {
+            background-color: #6a9c06;
+            color: white;
         }
     </style>
 </head>
 
 <body>
+
     <div class="top">
         <i class="fa-solid fa-location-dot"></i>
         <p class="street">123 Street, New York</p>
@@ -40,40 +82,43 @@
             <a href="/">Home</a>
             <a href="/shop">Shop</a> 
             <a href="/details">Shop Details</a>
-            <a href="/cart">Cart</a>
             <a href="/contact" style="color: orange;">Contacts</a> 
         </div>
 
         <div class="search">
-            <a href="/shop" style="color: inherit;"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="/cart" style="color: inherit;"><i class="fa-solid fa-bag-shopping"></i></a>
+            <a href="/shop"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="/cart"><i class="fa-solid fa-bag-shopping"></i></a>
             <a href="/dashboard" style="color: inherit;"><i class="fa-solid fa-user"></i></a>
         </div>
     </div>
-
     <div class="contact-container">
-        <h2 class="text-center mb-4">Get In Touch</h2>
+        <h2 class="text-center mb-4" style="color: #333; font-weight: bold;">Get In Touch</h2>
+        
         <div class="contact-info">
             <p>Contact us in case of any query or If You want Fresh Vegetables and Fruits!</p>
-            <p><i class="fa-solid fa-phone"></i> +92 312 4800449</p>
+            <p><strong><i class="fa-solid fa-phone"></i> +92 312 4800449</strong></p>
         </div>
         
         <form onsubmit="event.preventDefault(); alert('Message Sent Successfully! We will contact you soon.');"> 
             <div class="mb-3">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-control" placeholder="Ali Khan" required>
+                <label class="form-label text-muted">Your Name</label>
+                <input type="text" class="form-control" placeholder="Ex: Ali Khan" required>
             </div>
             <div class="mb-3">
-                <label class="form-label">Your Email</label>
-                <input type="email" class="form-control" placeholder="ali@example.com" required>
+                <label class="form-label text-muted">Your Email</label>
+                <input type="email" class="form-control" placeholder="Ex: ali@example.com" required>
             </div>
             <div class="mb-3">
-                <label class="form-label">Message</label>
+                <label class="form-label text-muted">Message</label>
                 <textarea class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
             </div>
-            <button type="submit" class="read-more" style="border:none; cursor:pointer;">Send Message</button>
+            
+            <div class="text-center">
+                <button type="submit" class="btn-send">Send Message</button>
+            </div>
         </form>
     </div>
+
 
     <footer class="footer">
         <div class="footer-top">
@@ -96,9 +141,7 @@
         <div class="footer-columns">
             <div class="footer-column" style="flex: 1">
                 <h3>Why People Like us!</h3>
-                <p>
-                    Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.
-                </p>
+                <p>Customers love us for our fresh, high-quality produce, reliable delivery, and exceptional customer service.</p>
             </div>
 
             <div class="footer-column" style="flex: 1">
@@ -140,6 +183,6 @@
             <span>© <span class="highlight">Harvest HUB</span>, All right reserved.</span><br>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
