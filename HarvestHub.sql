@@ -281,3 +281,20 @@ PRINT 'Cmd: Column Added';
 -- E) Check Final Data
 SELECT * FROM Products;
 SELECT * FROM Users;
+
+--============================
+USE HarvestHub;
+GO
+
+ALTER TABLE Customers 
+ADD phone_number VARCHAR(20);
+
+USE HarvestHub;
+SELECT * FROM Customers;
+
+USE HarvestHub;
+GO
+
+ALTER TABLE Orders
+ADD subtotal DECIMAL(10, 2),
+    tax_amount DECIMAL(10, 2);
